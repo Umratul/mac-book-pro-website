@@ -10,6 +10,7 @@ function updateMemoryCost(memoryIs8gb) {
         extraMemory.innerText = 180;
     }
     calculateTotalCost();
+    return extraMemoryCost;
 }
 
 // storage function
@@ -34,42 +35,42 @@ function updateDeliveryCharge(charge) {
     const extraDelivery = deliveryCharge.innerText;
     if (charge == true) {
         deliveryCharge.innerText = 0;
+        
     }
     else {
         deliveryCharge.innerText = 20;
-    }
-    
+    }  
     calculateTotalCost();
-    return deliveryCharge;
 }
 
 
 // total price function
 function calculateTotalCost() {
+    const bestPrice = document.getElementById('best-price').innerText;
     const extraMemoryPrice = document.getElementById('extra-memory').innerText;
     const extraStoragePrice = document.getElementById('extra-storage').innerText;
-
     const extraDeliveryPrice = document.getElementById('delivery-charge').innerText;
 
-    const subTotal = document.getElementById('total-price');
-    const totalPrice = subTotal.innerText;
-    const total = parseFloat(extraMemoryPrice) + parseFloat(extraStoragePrice) + parseFloat(extraDeliveryPrice);
+    const finalTotalPrice = parseFloat(bestPrice) + parseFloat(extraMemoryPrice) + parseFloat(extraStoragePrice) + parseFloat(extraDeliveryPrice);
 
-    subTotal.innerText = parseFloat(totalPrice) + total;
+    const totalPrice = document.getElementById('total-price');
+    totalPrice.innerText = finalTotalPrice;
+    return finalTotalPrice;
     
-    // const caseInput = document.getElementById('case-number');
-    // const caseNumber = caseInput.value;
-    // caseInput.value = parseInt(caseNumber) + 1;
-
-    // const totalPrice = parseInt() + parseInt(extraMemoryPrice) + parseInt(extraStoragePrice) + parseInt(extraDeliveryPrice);
-    // document.getElementById('total-price').innerText = totalPrice;
-    
-
-
-    
-
-
 }
+        // promo code function
+ function promoCode() {   
+    const inputField = document.getElementById('promo-code');
+    const codeInput = inputField.value;
+    if (codeInput == 'stevekaku') {
+        let totalCost = calculateTotalCost();
+        
+        totalCost = totalCost - totalCost * .2;
+        document.getElementById('afterDiscount-price').innerText = totalCost;
+        inputField.value = '';
+    }
+}
+
     // memory
 document.getElementById('btn-8gb-memory').addEventListener('click', function () {
     // const extraMemory = document.getElementById('extra-memory');
@@ -121,5 +122,8 @@ document.getElementById('btn-16gb-memory').addEventListener('click', function ()
         //     deliveryCharge.innerText = 180;
         updateDeliveryCharge(false);
 });
-            
-            
+  
+ //apply for promo code
+document.getElementById('apply-btn').addEventListener('click', function () {
+    promoCode();
+    });
