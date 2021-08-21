@@ -1,0 +1,15 @@
+.honda-bg-primary{
+    background-color: #264653;
+}
+#honda-btn-danger{
+    background-color: #E76F51;
+}
+.honda-text-danger{
+    color: #E76F51;
+}
+.honda-text-warning{
+    color: #E77C40;;
+}
+.img-filter{
+filter:grayscale(100%);
+}
